@@ -340,7 +340,10 @@ public class Ledger {
         return uncommittedBlock;
     }
 
-    public void reset(){
+    /**
+     * Helper method allowing reset the state of the Ledger
+     */
+    public synchronized void reset(){
         blockMap = new TreeMap<>();
         uncommittedBlock = new Block(1, "");
         uncommittedBlock.addAccount("master", new Account("master", Integer.MAX_VALUE));
