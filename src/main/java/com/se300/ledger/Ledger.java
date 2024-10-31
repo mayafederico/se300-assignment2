@@ -14,7 +14,7 @@ public class Ledger {
     private String name;
     private String description;
     private String seed;
-    private final static NavigableMap <Integer,Block> blockMap;
+    private static NavigableMap <Integer,Block> blockMap;
     private static Block uncommittedBlock;
 
     private static Ledger ledger;
@@ -338,5 +338,11 @@ public class Ledger {
      */
     public Block getUncommittedBlock(){
         return uncommittedBlock;
+    }
+
+    public void reset(){
+        blockMap = new TreeMap<>();
+        uncommittedBlock = new Block(1, "");
+        uncommittedBlock.addAccount("master", new Account("master", Integer.MAX_VALUE));
     }
 }
