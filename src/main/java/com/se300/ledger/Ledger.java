@@ -291,6 +291,10 @@ public class Ledger {
      */
     public void validate() throws LedgerException {
 
+        if(blockMap.isEmpty()){
+            throw new LedgerException("Validate", "No Block Has Been Committed");
+        }
+
         Block committedBlock = blockMap.lastEntry().getValue();
         Map<String,Account> accountMap = committedBlock.getAccountBalanceMap();
         List<Account> accountList = new ArrayList<>(accountMap.values());
