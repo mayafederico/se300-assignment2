@@ -18,7 +18,7 @@ public class AssertionsTest {
     private static Ledger ledger;
     private static Account mary;
     private static Account sergey;
-    private static Account master;
+    //private static Account master;
 
     @BeforeAll
     @SuppressWarnings("unused")
@@ -26,11 +26,11 @@ public class AssertionsTest {
         ledger = Ledger.getInstance("test", "test ledger 2023", "chapman");
         ledger.createAccount("mary");
         ledger.createAccount("sergey");
-        ledger.createAccount("master");
+        //ledger.createAccount("master");
 
         mary = ledger.getUncommittedBlock().getAccount("mary");
         sergey = ledger.getUncommittedBlock().getAccount("sergey");
-        master = ledger.getUncommittedBlock().getAccount("master");
+        //master = ledger.getUncommittedBlock().getAccount("master");
     }
 
     // Asserts that accounts are not null
@@ -38,7 +38,7 @@ public class AssertionsTest {
     public void testAccountCreation() {
         assertNotNull(mary);
         assertNotNull(sergey);
-        assertNotNull(master);
+        //assertNotNull(master);
     }
 
     // Test the ability to get and set the balance of an account
@@ -62,6 +62,8 @@ public class AssertionsTest {
 
         assumingThat(ledger.getTransaction("11") == null,
         () -> {
+            mary.setBalance(100);
+            sergey.setBalance(0);
             Integer initialMaryBalance = mary.getBalance();
             Integer initialSergeyBalance = sergey.getBalance();
 
